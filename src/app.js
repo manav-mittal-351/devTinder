@@ -13,6 +13,10 @@ app.use("/test",(req,res)=>{
     res.send("Hello from the testing page!!");
 })
 
+app.use("help", (req,res)=>{
+    res.send("Helping page");
+})
+
 app.listen(3000, ()=>{
     console.log("Server is working perfectly...");
 })
