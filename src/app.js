@@ -13,9 +13,9 @@ app.delete("/user", (req,res)=>{
     res.send("Data deleted successfully!");
 })
 
-app.patch("/user", (req,res)=>{
-    res.send("Patched successfully!");
-})
+// app.patch("/user", (req,res)=>{
+//     res.send("Patched successfully!");
+// })
 
 app.use("/user", (req,res)=>{
     res.send("Hello i am using middleware!!");
