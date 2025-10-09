@@ -1,22 +1,26 @@
 const express = require("express");
 const app = express();
 
-app.use("/homepage", (req,res)=>{
-    res.send("Hello Manav Mittal!!");
+app.get("/user", (req,res)=>{
+    res.send({firstName: "Manav", lastName: "Mittal" , age: "20", gender: "male"}); 
 })
 
-app.use("/sample", (req,res)=>{
-    res.send("Hello from the sample route page!!");
+app.post("/user", (req,res)=>{
+    res.send("Data get saved in database successfully!");
 })
 
-app.use("/test",(req,res)=>{
-    res.send("Hello from the testing page!!");
+app.delete("/user", (req,res)=>{
+    res.send("Data deleted successfully!");
 })
 
-app.use("help", (req,res)=>{
-    res.send("Helping page");
+app.patch("/user", (req,res)=>{
+    res.send("Patched successfully!");
 })
 
-app.listen(3000, ()=>{
-    console.log("Server is working perfectly...");
+app.use("/user", (req,res)=>{
+    res.send("Hello i am using middleware!!");
+})
+
+app.listen(5050, ()=>{
+    console.log("Server get started on port number 5050!");
 })
