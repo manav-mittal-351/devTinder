@@ -17,9 +17,9 @@ app.patch("/user", (req,res)=>{
     res.send("Patched successfully!");
 })
 
-app.use("/user", (req,res)=>{
-    res.send("Hello i am using middleware!!");
-})
+// app.use("/user", (req,res)=>{
+//     res.send("Hello i am using middleware!!");
+// })
 
 app.listen(5050, ()=>{
     console.log("Server get started on port number 5050!");
