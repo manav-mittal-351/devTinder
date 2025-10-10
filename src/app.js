@@ -1,25 +1,40 @@
 const express = require("express");
 const app = express();
 
-app.get("/user", (req,res)=>{
-    res.send({firstName: "Manav", lastName: "Mittal" , age: "20", gender: "male"}); 
-})
 
-app.post("/user", (req,res)=>{
-    res.send("Data get saved in database successfully!");
-})
-
-app.delete("/user", (req,res)=>{
-    res.send("Data deleted successfully!");
-})
-
-app.patch("/user", (req,res)=>{
-    res.send("Patched successfully!");
-})
-
-// app.use("/user", (req,res)=>{
-//     res.send("Hello i am using middleware!!");
+// Dynamic Routing
+// app.get("/user/:name/:age/:gender", (req,res)=>{
+//     const {name, age, gender} = req.params;
+//     console.log(req.params);
+//     res.send(
+//         {
+//             Name: `${name}`,
+//             Age: `${age}`,
+//             Gender: `${gender}`
+//         }
+//     )
 // })
+
+
+
+// Static Routing with query parameters
+// app.get("/user", (req,res)=>{
+//     const {name, age, gender} = req.query;
+//     console.log(req.query);
+
+//     res.send(
+//         {
+//             Name: `${name}`,
+//             Age: `${age}`,
+//             Gender: `${gender}`
+//         }
+//     ) 
+// })
+
+
+app.get(/.*fly$/, (req,res)=>{
+    res.send("Hiiiii...");
+})
 
 app.listen(5050, ()=>{
     console.log("Server get started on port number 5050!");
