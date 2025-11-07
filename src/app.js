@@ -1,97 +1,43 @@
 const express = require("express");
-const { adminAuth,userAuth } = require("./middlewares");
 const app = express();
+const {connectDB} = require("./config/database");
+const User = require("./models/user")
 
 
-// Dynamic Routing
-// app.get("/user/:name/:age/:gender", (req,res)=>{
-//     const {name, age, gender} = req.params;
-//     console.log(req.params);
-//     res.send(
-//         {
-//             Name: `${name}`,
-//             Age: `${age}`,
-//             Gender: `${gender}`
-//         }
-//     )
-// })
+// app.post("/signUp", async (req,res) => {
+// const user = new User({
+//     firstName: "Manav",
+//     lastName: "Mittal",
+//     email: "manav@gmail.com",
+//     password: "manav@123"
+// });
+// await user.save();
+// });
 
 
+app.post("/signUp", async (req,res) => {
+    const user = new User ({
+        firstName: "Rahul",
+        lastName: "Kumar",
+        emailId: "rahul@gmail.com",
+        password: "rahul@123"
+    });
 
-// Static Routing with query parameters
-// app.get("/user", (req,res)=>{
-//     const {name, age, gender} = req.query;
-//     console.log(req.query);
-
-//     res.send(
-//         {
-//             Name: `${name}`,
-//             Age: `${age}`,
-//             Gender: `${gender}`
-//         }
-//     ) 
-// })
-
-
-// app.get(/.*fly$/, (req,res,next)=>{}
-
-// app.get(/ab+cd/, (req,res,next)=>{    
-//     // res.send("Hiiiii...");
-//     console.log("Hello Manav!");
-//     next();
-//     // res.send("i send the message");
-// },
-// (req,res,next)=>{
-//     console.log("Second res!");
-//     // res.send("Send second response to postman!");
-//     next();
-// },
-// (req,res,next)=>{
-//     console.log("third response");
-//     next();
-// },
-// (req,res,next)=>{
-//     console.log("Fourth response");
-//     next();
-//     // res.send("Fourth response get send!");
-// },
-// (req,res)=>{
-//     console.log("Fifth response");
-//     res.send("Fifth response get send!");
-// }
-// )
+    
+    try{
+        await user.save();
+        res.send("User added successfully!");
+    }catch(err){
+        res.status(400).send("Error saving the user:" + err.message)
+    }
+});
 
 
-// app.use("/user", (req,res,next)=>{
-//     console.log("Second Response");
-//     res.send("Second response sent.!");
-//     // next();
-// })
-
-// app.use("/user", (req,res,next)=>{
-//     console.log("First response!");
-//     next();    
-// })
-
-app.get("/admin/loggin", (req,res)=>{
-    res.send("Admin get logged in!");
-})
-
-app.use("/admin", adminAuth);
-app.get("/admin/getAllData", (req,res)=>{
-    res.send("All data sent!");
-})
-
-
-app.get("/user/loggin", (req,res)=>{
-    res.send("User get logged in!");
-})
-
-app.use("/user", userAuth);
-app.get("/user/data", (req,res)=>{
-    res.send("User data sent!");
-})
-
-app.listen(5050, ()=>{
-    console.log("Server is started!");
+connectDB().then(() => {
+    console.log("Database connection established...");
+    app.listen(7777, () => {
+        console.log("Server is listning on port 7777...");
+    })
+}).catch((err) => {
+    console.log("Database cannot connected!");
 })
