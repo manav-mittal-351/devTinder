@@ -5,10 +5,10 @@ const isUserDataValid = (req) => {
     if(!firstName || !lastName){
         throw new Error("Name is not valid");
     }
-    else if(!validator.isEmail){
+    else if(!validator.isEmail(email)){
         throw new Error("Please enter a valid email!");
     }
-    else if(!validator.isStrongPassword){
+    else if(!validator.isStrongPassword(password)){
         throw new Error("Please enter a strong password!");
     }
 };
