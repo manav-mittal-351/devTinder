@@ -18,7 +18,8 @@ const validateEditProfileData = (req) => {
     const isEditAllowd = Object.keys(req.body).every(field => allowedEditFeilds.includes(field));
 
     return isEditAllowd;
-} 
+};
+
 
 module.exports = {
     isUserDataValid,
