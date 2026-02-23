@@ -33,7 +33,6 @@ requestRouter.post("/request/send/:status/:receiverUserId", userAuth, async (req
             .status(400)
             .send({message: "Connection Request Already Exist!"});
         }
-
         
         const connectionRequest = new ConnectionRequest({
             senderUserId,
