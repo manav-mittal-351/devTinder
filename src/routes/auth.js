@@ -5,7 +5,6 @@ const {isUserDataValid} = require("../utils/validation");
 const bcrypt = require("bcrypt");
 
 
-
 // User getting signUp
 authRouter.post("/signUp", async (req,res) => {
     
